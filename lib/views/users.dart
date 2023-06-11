@@ -6,8 +6,9 @@ class Users extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
+    return SafeArea(
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Utilisateurs')),
       body: Container(
         // alignment: Alignment.topLeft,
         child: UserDataTable(),
@@ -18,6 +19,12 @@ class Users extends StatelessWidget {
           ],
         ),*/
       ),
-    );
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, 'ajout-utilisateur');
+        },
+        child: const Icon(Icons.add),
+      ),
+    ));
   }
 }

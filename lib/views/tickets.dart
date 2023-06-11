@@ -18,12 +18,18 @@ import 'package:flutter/material.dart';
         itemCount: itemCount,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            title: Text('Item ${index + 1}'),
+            title: Text('Ticket ${index + 1}'),
           );
         },
       )
-          : const Center(child: Text('No items')),
+          : const Center(child: Text('No tickets')),
+            floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, 'ajout-ticket');
+        },
+        child: const Icon(Icons.add),
+      ),
     );
-    throw UnimplementedError();
+
   }
   }

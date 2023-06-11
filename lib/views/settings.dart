@@ -17,7 +17,7 @@ class Settings extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: const Text(
                   'Bienvenue Dans votre espace',
-                  style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.w700),
+                  style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.w500),
                 )),
 
             // TextButton(
@@ -31,14 +31,14 @@ class Settings extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                  child: ElevatedButton(
                   child:  Text(style: TextStyle(fontSize: 18),'Liste Utilisateurs'),
-                  onPressed: () => Navigator.pushReplacementNamed(context, 'home'),
+                  onPressed: () => Navigator.pushNamed(context, 'users'),
                 )),
             Container(
                 height: 50,
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: ElevatedButton(
                   child:  Text(style: TextStyle(fontSize: 18),'Liste fournisseurs'),
-                  onPressed: () => Navigator.pushReplacementNamed(context, 'home'),
+                  onPressed: () => Navigator.pushNamed(context, 'fournisseurs'),
                 )),
           ],
         ));

@@ -33,83 +33,80 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Accueil'),
-          backgroundColor: primary,
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const UserAccountsDrawerHeader(
-                accountName: Text("Username"),
-                accountEmail: Text("user@email.com"),
-                currentAccountPicture: CircleAvatar(
-                    backgroundColor: Colors.amber,
-                    child: Text(
-                      'CH',
-                      style: TextStyle(fontSize: 40),
-                    )),
+    return SafeArea(
+        child: Scaffold(
+            appBar: AppBar(
+              title: const Text('Accueil'),
+              // backgroundColor: primary,
+            ),
+            drawer: Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  const UserAccountsDrawerHeader(
+                    accountName: Text("Username"),
+                    accountEmail: Text("user@email.com"),
+                    currentAccountPicture: CircleAvatar(
+                        backgroundColor: Colors.amber,
+                        child: Text(
+                          'CH',
+                          style: TextStyle(fontSize: 40),
+                        )),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.account_circle),
+                    title: const Text('Profile'),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+      
+                  ListTile(
+                    leading: const Icon(Icons.login),
+                    title: const Text('Login'),
+                    onTap: () {
+                      Navigator.pushNamed(context, 'login');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.add),
+                    title: const Text('Ajout Utilisateur'),
+                    onTap: () {
+                      Navigator.pushNamed(context, 'ajout-utilisateur');
+                    },
+                  ),
+                ],
               ),
-              ListTile(
-                leading: const Icon(Icons.account_circle),
-                title: const Text('Profile'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+            ),
+            body: Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
+            ),
+            bottomNavigationBar: NavigationBarTheme(
+              data: NavigationBarThemeData(
+                // indicatorColor: Colors.blue.shade300,
+                labelTextStyle: MaterialStateProperty.all(
+                  TextStyle(
+                  fontSize: 14,
+                  // fontWeight: FontWeight.w500
+                )),
               ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+              child: NavigationBar(
+                height: 60,
+                // backgroundColor: primary,
+                selectedIndex: _selectedIndex,
+                onDestinationSelected: (index) =>
+                    setState(() => this._selectedIndex = index),
+                destinations: [
+                  NavigationDestination(
+                      icon: Icon(Icons.home), label: "Accueil"),
+                  // NavigationDestination(
+                  //     icon: Icon(Icons.settings), label: "Settings"),
+                  NavigationDestination(
+                      icon: Icon(Icons.support), label: "Tickets"),
+                  NavigationDestination(
+                      icon: Icon(Icons.people_rounded), label: "Users"),
+                ],
               ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Login'),
-                onTap: () {
-                  Navigator.pushNamed(context, 'login');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('cards'),
-                onTap: () {
-                  Navigator.pushNamed(context, 'cards');
-                },
-              ),
-            ],
-          ),
-        ),
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-        bottomNavigationBar: NavigationBarTheme(
-          data: NavigationBarThemeData(
-            indicatorColor: Colors.blue.shade300,
-            labelTextStyle: MaterialStateProperty.all(TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.white)),
-          ),
-          child: NavigationBar(
-            height: 60,
-            backgroundColor: primary,
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: (index) =>
-                setState(() => this._selectedIndex = index),
-            destinations: [
-              NavigationDestination(icon: Icon(Icons.home), label: "Accueil"),
-              NavigationDestination(
-                  icon: Icon(Icons.settings), label: "Settings"),
-              NavigationDestination(
-                  icon: Icon(Icons.support), label: "Tickets"),
-              NavigationDestination(
-                  icon: Icon(Icons.people_rounded), label: "Users"),
-            ],
-          ),
-        ));
+            )));
   }
 }
