@@ -1,107 +1,115 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/components/list_items.dart';
+import 'package:flutter_app/utils/styles.dart';
+import 'package:flutter_app/views/settings.dart';
+import 'package:flutter_app/views/tickets.dart';
+import 'package:flutter_app/views/users.dart';
 
 /// Flutter code sample for [BottomNavigationBar].
-
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() =>
-      _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomeState
-    extends State<Home> {
+class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    Settings(),
+    Tickets(),
+    Users(),
+    Users(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = _selectedIndex;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children:[
-        const UserAccountsDrawerHeader(
-            accountName: Text("Username"), 
-            accountEmail: Text("user@email.com"),
-          currentAccountPicture: CircleAvatar(
-            backgroundColor: Colors.amber,
-            child:Text('CH',style: TextStyle(fontSize: 40),)
+        appBar: AppBar(
+          title: const Text('Accueil'),
+          backgroundColor: primary,
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const UserAccountsDrawerHeader(
+                accountName: Text("Username"),
+                accountEmail: Text("user@email.com"),
+                currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.amber,
+                    child: Text(
+                      'CH',
+                      style: TextStyle(fontSize: 40),
+                    )),
+              ),
+              ListTile(
+                leading: const Icon(Icons.account_circle),
+                title: const Text('Profile'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Login'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'login');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('cards'),
+                onTap: () {
+                  Navigator.pushNamed(context, 'cards');
+                },
+              ),
+            ],
           ),
         ),
-            ListTile(
-              leading:  const Icon(Icons.account_circle),
-              title: const Text('Profile'),
-              onTap: (){
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: (){
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Login'),
-              onTap: (){
-                Navigator.pushNamed(context, 'login');
-              },
-            ),
-          ],
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
         ),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Acceuil',
+        bottomNavigationBar: NavigationBarTheme(
+          data: NavigationBarThemeData(
+            indicatorColor: Colors.blue.shade300,
+            labelTextStyle: MaterialStateProperty.all(TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.white)),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.help),
-            label: 'tickets',
+          child: NavigationBar(
+            height: 60,
+            backgroundColor: primary,
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: (index) =>
+                setState(() => this._selectedIndex = index),
+            destinations: [
+              NavigationDestination(icon: Icon(Icons.home), label: "Accueil"),
+              NavigationDestination(
+                  icon: Icon(Icons.settings), label: "Settings"),
+              NavigationDestination(
+                  icon: Icon(Icons.support), label: "Tickets"),
+              NavigationDestination(
+                  icon: Icon(Icons.people_rounded), label: "Users"),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Utilisateurs',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
-    );
+        ));
   }
 }

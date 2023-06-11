@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
+class Login extends StatelessWidget {
+
   const Login({Key? key}) : super(key: key);
+
+  static const String _title = 'Login';
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(title: const Text(_title)),
+        body: const MyStatefulWidget(),
+      );
+
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
 
   @override
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
@@ -69,6 +85,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   onPressed: () {
                     // print(nameController.text);
                     // print(passwordController.text);
+                    Navigator.pushReplacementNamed(context, 'home');
                   },
                 )),
           ],
