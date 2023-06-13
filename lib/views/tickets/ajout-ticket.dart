@@ -194,7 +194,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     child: ElevatedButton(
                       child: const Text('Ajouter'),
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, 'home');
+                        Navigator.pushReplacementNamed(context, '/');
                       },
                     )),
               ],

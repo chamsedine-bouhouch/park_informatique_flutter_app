@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/services/auth.dart';
+import 'package:flutter_app/views/fournisseurs.dart';
+import 'package:flutter_app/views/fournisseurs/ajout_fournisseur.dart';
 import 'package:flutter_app/views/home.dart';
- import 'route/route.dart' as route;
+import 'package:flutter_app/views/login.dart';
+import 'package:flutter_app/views/settings.dart';
+import 'package:flutter_app/views/tickets.dart';
+import 'package:flutter_app/views/tickets/ajout-ticket.dart';
+import 'package:flutter_app/views/users.dart';
+import 'package:flutter_app/views/utilisateurs/ajout_utilisateur.dart';
+import 'package:provider/provider.dart';
+//  import 'route/route.dart' as route;
 
 /*
 void main() => runApp(MaterialApp(
@@ -16,7 +26,14 @@ void main() => runApp(MaterialApp(
     }));
 */
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => Auth()),
+       ],
+      child: const MyApp(),
+    ),
+  );
 }
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -27,11 +44,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Park Informatique',
-      
-     theme: ThemeData(
+      theme: ThemeData(
           colorSchemeSeed: const Color(0xff6750a4), useMaterial3: true),
-      onGenerateRoute: route.controller,
-      initialRoute: route.loginPage,
+      routes: {
+        '/': (context) => Home(),
+        '/login': (context) => Login(),
+        '/users': (context) => Users(),
+        '/tickets': (context) => Tickets(),
+        '/fournisseurs': (context) => Fournisseurs(),
+        '/setting': (context) => Settings(),
+        '/ajout-utilisateur': (context) => AjoutUtilisateur(),
+        '/ajout-fournisseur': (context) => AjoutFournisseur(),
+        '/ajout-ticket': (context) => AjoutTicket(),
+      },
+      // onGenerateRoute: route.controller,
+      // initialRoute: route.loginPage,
     );
   }
 }

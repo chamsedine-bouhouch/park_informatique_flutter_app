@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/list_items.dart';
-import 'package:flutter_app/utils/styles.dart';
+import 'package:flutter_app/services/auth.dart';
 import 'package:flutter_app/views/settings.dart';
 import 'package:flutter_app/views/tickets.dart';
 import 'package:flutter_app/views/users.dart';
+import 'package:provider/provider.dart';
 
 /// Flutter code sample for [BottomNavigationBar].
 
 class Home extends StatefulWidget {
   const Home({super.key});
+    static const String _title = 'Accueil';
+
 
   @override
   State<Home> createState() => _HomeState();
@@ -36,11 +38,16 @@ class _HomeState extends State<Home> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: const Text('Accueil'),
+              title: const Text(Home._title),
               // backgroundColor: primary,
             ),
             drawer: Drawer(
-              child: ListView(
+              child: 
+               Consumer<Auth>(
+  builder: (context, auth, child) {
+    if (auth.authentificated) {
+      
+    return ListView(
                 padding: EdgeInsets.zero,
                 children: [
                   const UserAccountsDrawerHeader(
@@ -65,18 +72,73 @@ class _HomeState extends State<Home> {
                     leading: const Icon(Icons.login),
                     title: const Text('Login'),
                     onTap: () {
-                      Navigator.pushNamed(context, 'login');
+                      Navigator.pushNamed(context, '/login');
                     },
                   ),
                   ListTile(
                     leading: const Icon(Icons.add),
                     title: const Text('Ajout Utilisateur'),
                     onTap: () {
-                      Navigator.pushNamed(context, 'ajout-utilisateur');
+                      Navigator.pushNamed(context, '/ajout-utilisateur');
                     },
                   ),
                 ],
-              ),
+              );
+    } else {
+    return ListView(
+                padding: EdgeInsets.zero,
+                children: [
+             
+                  ListTile(
+                    leading: const Icon(Icons.login),
+                    title: const Text('Login'),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                  ),
+                 
+                ],
+              );
+      
+    }
+  },),
+              // ListView(
+              //   padding: EdgeInsets.zero,
+              //   children: [
+              //     const UserAccountsDrawerHeader(
+              //       accountName: Text("Username"),
+              //       accountEmail: Text("user@email.com"),
+              //       currentAccountPicture: CircleAvatar(
+              //           backgroundColor: Colors.amber,
+              //           child: Text(
+              //             'CH',
+              //             style: TextStyle(fontSize: 40),
+              //           )),
+              //     ),
+              //     ListTile(
+              //       leading: const Icon(Icons.account_circle),
+              //       title: const Text('Profile'),
+              //       onTap: () {
+              //         Navigator.pop(context);
+              //       },
+              //     ),
+      
+              //     ListTile(
+              //       leading: const Icon(Icons.login),
+              //       title: const Text('Login'),
+              //       onTap: () {
+              //         Navigator.pushNamed(context, '/login');
+              //       },
+              //     ),
+              //     ListTile(
+              //       leading: const Icon(Icons.add),
+              //       title: const Text('Ajout Utilisateur'),
+              //       onTap: () {
+              //         Navigator.pushNamed(context, '/ajout-utilisateur');
+              //       },
+              //     ),
+              //   ],
+              // ),
             ),
             body: Center(
               child: _widgetOptions.elementAt(_selectedIndex),
@@ -85,7 +147,7 @@ class _HomeState extends State<Home> {
               data: NavigationBarThemeData(
                 // indicatorColor: Colors.blue.shade300,
                 labelTextStyle: MaterialStateProperty.all(
-                  TextStyle(
+                  const TextStyle(
                   fontSize: 14,
                   // fontWeight: FontWeight.w500
                 )),
@@ -95,8 +157,8 @@ class _HomeState extends State<Home> {
                 // backgroundColor: primary,
                 selectedIndex: _selectedIndex,
                 onDestinationSelected: (index) =>
-                    setState(() => this._selectedIndex = index),
-                destinations: [
+                    setState(() => _selectedIndex = index),
+                destinations: const [
                   NavigationDestination(
                       icon: Icon(Icons.home), label: "Accueil"),
                   // NavigationDestination(

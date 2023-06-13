@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/services/auth.dart';
+import 'package:provider/provider.dart';
 
 class Settings extends StatelessWidget {
-
   const Settings({Key? key}) : super(key: key);
 
   static const String _title = 'Login';
@@ -15,10 +16,18 @@ class Settings extends StatelessWidget {
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
-                child: const Text(
-                  'Bienvenue Dans votre espace',
-                  style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.w500),
+                child: Consumer<Auth>(
+                  builder: (context, auth, child) {
+                    return Text(
+                        'Bienvenue Dans votre espace: ${auth.authentificated}',
+                        style: const TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.w500));
+                  },
                 )),
+            // const Text(
+            //   'Bienvenue Dans votre espace',
+            //   style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.w500),
+            // )),
 
             // TextButton(
             //   onPressed: () {
@@ -29,16 +38,19 @@ class Settings extends StatelessWidget {
             Container(
                 height: 50,
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                 child: ElevatedButton(
-                  child:  Text(style: TextStyle(fontSize: 18),'Liste Utilisateurs'),
-                  onPressed: () => Navigator.pushNamed(context, 'users'),
+                child: ElevatedButton(
+                  child: Text(
+                      style: TextStyle(fontSize: 18), 'Liste Utilisateurs'),
+                  onPressed: () => Navigator.pushNamed(context, '/users'),
                 )),
             Container(
                 height: 50,
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: ElevatedButton(
-                  child:  Text(style: TextStyle(fontSize: 18),'Liste fournisseurs'),
-                  onPressed: () => Navigator.pushNamed(context, 'fournisseurs'),
+                  child: Text(
+                      style: TextStyle(fontSize: 18), 'Liste fournisseurs'),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/fournisseurs'),
                 )),
           ],
         ));

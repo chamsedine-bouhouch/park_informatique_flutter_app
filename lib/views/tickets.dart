@@ -25,7 +25,7 @@ import 'package:flutter/material.dart';
           : const Center(child: Text('No tickets')),
             floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, 'ajout-ticket');
+          Navigator.pushNamed(context, '/ajout-ticket');
         },
         child: const Icon(Icons.add),
       ),

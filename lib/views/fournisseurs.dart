@@ -83,7 +83,7 @@ class Fournisseurs extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, 'ajout-fournisseur');
+          Navigator.pushNamed(context, '/ajout-fournisseur');
         },
         child: const Icon(Icons.add),
       ),
