@@ -1,35 +1,46 @@
 import 'package:flutter/material.dart';
 
-  class Tickets extends StatefulWidget {
-    const Tickets({super.key});
+class Tickets extends StatefulWidget {
+  const Tickets({super.key});
 
-    @override
-    State<Tickets> createState() => _TicketsState();
+  @override
+  State<Tickets> createState() => _TicketsState();
+}
 
-  }
-  class _TicketsState extends State<Tickets> {
-  int itemCount=10;
-
+class _TicketsState extends State<Tickets> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: itemCount > 0
-          ? ListView.builder(
-        itemCount: itemCount,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text('Ticket ${index + 1}'),
-          );
-        },
-      )
-          : const Center(child: Text('No tickets')),
-            floatingActionButton: FloatingActionButton(
+      body: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.ac_unit),
+            title: Text('Réparation imprimante'),
+            subtitle: Text('Service info'),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {
+              // Handle the onTap event for this list item
+              Navigator.pushNamed(context, '/ajout-ticket');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.ac_unit),
+            title: Text('Formatage PC'),
+            subtitle: Text('software'),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {
+              // Handle the onTap event for this list item
+              Navigator.pushNamed(context, '/ticket-details');
+            },
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/ajout-ticket');
         },
         child: const Icon(Icons.add),
       ),
     );
-
   }
-  }
+}

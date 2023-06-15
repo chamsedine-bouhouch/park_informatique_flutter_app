@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/data_table.dart';
 
 class Fournisseurs extends StatelessWidget {
   const Fournisseurs({Key? key}) : super(key: key);
@@ -59,23 +58,23 @@ class Fournisseurs extends StatelessWidget {
             cells: <DataCell>[
               DataCell(SizedBox(
                 width: (MediaQuery.of(context).size.width / 20) * 3,
-                child: Text("data"),
+                child: const Text("data"),
               )),
               DataCell(SizedBox(
                 width: (MediaQuery.of(context).size.width / 20) * 4,
-                child: Text("m.f@mail.com"),
+                child: const Text("m.f@mail.com"),
               )),
               DataCell(SizedBox(
                 width: (MediaQuery.of(context).size.width / 20) * 3,
-                child: Text("90505050"),
+                child: const Text("90505050"),
               )),
               DataCell(SizedBox(
                 width: (MediaQuery.of(context).size.width / 20) * 3,
-                child: Text("Materiel"),
+                child: const Text("Materiel"),
               )),
               DataCell(SizedBox(
                 width: (MediaQuery.of(context).size.width / 10) * 3,
-                child: Text("Fournisseur perépheriques"),
+                child: const Text("Fournisseur perépheriques"),
               )),
             ],
           ),

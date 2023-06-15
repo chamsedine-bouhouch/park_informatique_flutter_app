@@ -14,6 +14,5 @@ class ListCards extends StatelessWidget {
         )
       ],
     );
-    throw UnimplementedError();
   }
 }

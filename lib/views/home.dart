@@ -18,8 +18,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Settings(),
     Tickets(),
@@ -27,11 +25,6 @@ class _HomeState extends State<Home> {
     Users(),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = _selectedIndex;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,17 +62,17 @@ class _HomeState extends State<Home> {
                   ),
       
                   ListTile(
-                    leading: const Icon(Icons.login),
-                    title: const Text('Login'),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                  ),
-                  ListTile(
                     leading: const Icon(Icons.add),
                     title: const Text('Ajout Utilisateur'),
                     onTap: () {
                       Navigator.pushNamed(context, '/ajout-utilisateur');
+                    },
+                  ),
+                                    ListTile(
+                    leading: const Icon(Icons.logout),
+                    title: const Text('logout'),
+                    onTap: () {
+                      Provider.of<Auth>(context,listen:false).logout();
                     },
                   ),
                 ],

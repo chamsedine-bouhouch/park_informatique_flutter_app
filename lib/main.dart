@@ -7,6 +7,7 @@ import 'package:flutter_app/views/login.dart';
 import 'package:flutter_app/views/settings.dart';
 import 'package:flutter_app/views/tickets.dart';
 import 'package:flutter_app/views/tickets/ajout-ticket.dart';
+import 'package:flutter_app/views/tickets/ticket_details.dart';
 import 'package:flutter_app/views/users.dart';
 import 'package:flutter_app/views/utilisateurs/ajout_utilisateur.dart';
 import 'package:provider/provider.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         '/ajout-utilisateur': (context) => AjoutUtilisateur(),
         '/ajout-fournisseur': (context) => AjoutFournisseur(),
         '/ajout-ticket': (context) => AjoutTicket(),
+        '/ticket-details': (context) => TicketDetails(),
       },
       // onGenerateRoute: route.controller,
       // initialRoute: route.loginPage,

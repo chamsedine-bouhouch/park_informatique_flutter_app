@@ -38,15 +38,15 @@ class UserDataTable extends StatelessWidget {
           cells: <DataCell>[
              DataCell(SizedBox(
                 width: (MediaQuery.of(context).size.width / 10) * 3,
-                child: Text("Foulen foulani"),
+                child: const Text("Foulen foulani"),
               )),
              DataCell(SizedBox(
                 width: (MediaQuery.of(context).size.width / 10) * 3,
-                child: Text("90505050"),
+                child: const Text("90505050"),
               )),
              DataCell(SizedBox(
                 width: (MediaQuery.of(context).size.width / 10) * 3,
-                child: Text("123546"),
+                child: const Text("123546"),
               )),
           ],
         ),
