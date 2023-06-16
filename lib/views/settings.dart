@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
 
-  static const String _title = 'Login';
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class Settings extends StatelessWidget {
             // ),
             Container(
                 height: 50,
-                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: ElevatedButton(
                   child: Text(
                       style: TextStyle(fontSize: 18), 'Liste Utilisateurs'),
@@ -45,7 +44,7 @@ class Settings extends StatelessWidget {
                 )),
             Container(
                 height: 50,
-                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: ElevatedButton(
                   child: Text(
                       style: TextStyle(fontSize: 18), 'Liste fournisseurs'),

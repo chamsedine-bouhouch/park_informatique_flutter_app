@@ -1,3 +1,4 @@
+// ignore: library_prefixes
 import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/foundation.dart';
 
@@ -8,14 +9,18 @@ class Auth extends ChangeNotifier {
   bool get authentificated => _isLoggedIn;
 
   void login({required Map creds}) async {
-    print(creds);
+    if (kDebugMode) {
+      print(creds);
+    }
     try {
       Dio.Response response = await dio().post('/auth/login', data: creds);
       if (kDebugMode) {
         print(response.data.toString());
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
     // print(creds);
 

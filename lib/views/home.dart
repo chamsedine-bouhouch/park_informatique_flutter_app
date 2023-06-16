@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:flutter_app/views/settings.dart';
-import 'package:flutter_app/views/tickets.dart';
-import 'package:flutter_app/views/users.dart';
+import 'package:flutter_app/views/tickets/tickets.dart';
+import 'package:flutter_app/views/utilisateurs/users.dart';
 import 'package:provider/provider.dart';
 
 /// Flutter code sample for [BottomNavigationBar].

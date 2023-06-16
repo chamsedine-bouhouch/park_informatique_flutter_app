@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/views/fournisseurs.dart';
+import 'package:flutter_app/views/fournisseurs/fournisseurs.dart';
 import 'package:flutter_app/views/fournisseurs/ajout_fournisseur.dart';
 import 'package:flutter_app/views/tickets/ajout-ticket.dart';
 import 'package:flutter_app/views/utilisateurs/ajout_utilisateur.dart';
 import 'package:flutter_app/views/home.dart';
 import 'package:flutter_app/views/login.dart';
 import 'package:flutter_app/views/settings.dart';
-import 'package:flutter_app/views/users.dart';
+import 'package:flutter_app/views/utilisateurs/users.dart';
 
 // Define Routes
 /*
