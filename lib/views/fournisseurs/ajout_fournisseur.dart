@@ -34,10 +34,9 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController matriculeController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  String typeDropdownValue = typeList.first;
+    String typeDropdownValue = typeList.first;
   String serviceDropdownValue = serviceList.first;
   @override
   Widget build(BuildContext context) {
@@ -46,23 +45,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             padding: const EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
-                // Container(
-                //     alignment: Alignment.center,
-                //     padding: const EdgeInsets.all(10),
-                //     child: const Text(
-                //       'Nouveau compte',
-                //       style: TextStyle(fontSize: 20),
-                //     )),
-                // Container(
-                //   padding: const EdgeInsets.all(10),
-                //   child: TextField(
-                //     controller: nameController,
-                //     decoration: const InputDecoration(
-                //       border: OutlineInputBorder(),
-                //       labelText: 'Nom',
-                //     ),
-                //   ),
-                // ),
                 Container(
                   padding: const EdgeInsets.all(10),
                   child: TextField(
@@ -76,7 +58,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 Container(
                   padding: const EdgeInsets.all(10),
                   child: TextField(
-                    controller: nameController,
+                    controller: emailController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',

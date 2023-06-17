@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/components/fournisseurs_data_table.dart';
 
 class Fournisseurs extends StatelessWidget {
   const Fournisseurs({Key? key}) : super(key: key);
@@ -8,78 +9,7 @@ class Fournisseurs extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(title: const Text('Fournisseurs')),
-      body: DataTable(
-        columnSpacing: (MediaQuery.of(context).size.width / 20) * 0.5,
-        dataRowHeight: 80,
-        columns: const <DataColumn>[
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'Name',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-          ),
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'Email',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-          ),
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'Type',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-          ),
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'Téléphone',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-          ),
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'Service',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-          ),
-        ],
-        rows: <DataRow>[
-          DataRow(
-            cells: <DataCell>[
-              DataCell(SizedBox(
-                width: (MediaQuery.of(context).size.width / 20) * 3,
-                child: const Text("data"),
-              )),
-              DataCell(SizedBox(
-                width: (MediaQuery.of(context).size.width / 20) * 4,
-                child: const Text("m.f@mail.com"),
-              )),
-              DataCell(SizedBox(
-                width: (MediaQuery.of(context).size.width / 20) * 3,
-                child: const Text("90505050"),
-              )),
-              DataCell(SizedBox(
-                width: (MediaQuery.of(context).size.width / 20) * 3,
-                child: const Text("Materiel"),
-              )),
-              DataCell(SizedBox(
-                width: (MediaQuery.of(context).size.width / 10) * 3,
-                child: const Text("Fournisseur perépheriques"),
-              )),
-            ],
-          ),
-        ],
-      ),
+      body: FournisseursDataTable(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/ajout-fournisseur');

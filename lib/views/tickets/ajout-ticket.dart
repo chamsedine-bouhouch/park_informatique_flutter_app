@@ -154,10 +154,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       border: OutlineInputBorder(),
                       labelText: 'Description',
                     ),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
+         
                   ),
                 ),
                 

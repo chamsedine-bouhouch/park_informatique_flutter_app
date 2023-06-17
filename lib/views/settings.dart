@@ -51,6 +51,24 @@ class Settings extends StatelessWidget {
                   onPressed: () =>
                       Navigator.pushNamed(context, '/fournisseurs'),
                 )),
+            Container(
+                height: 50,
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: ElevatedButton(
+                  child: Text(
+                      style: TextStyle(fontSize: 18), 'Base de connaissances'),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/base-connaissances'),
+                )),
+            Container(
+                height: 50,
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: ElevatedButton(
+                  child: Text(
+                      style: TextStyle(fontSize: 18), 'Liste fournitures'),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/parcs'),
+                )),
           ],
         ));
   }
