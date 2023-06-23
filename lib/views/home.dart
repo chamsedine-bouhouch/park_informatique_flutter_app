@@ -4,6 +4,7 @@ import 'package:flutter_app/views/settings.dart';
 import 'package:flutter_app/views/tickets/tickets.dart';
 import 'package:flutter_app/views/utilisateurs/users.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 /// Flutter code sample for [BottomNavigationBar].
 
@@ -17,6 +18,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     Settings(),
@@ -25,7 +28,15 @@ class _HomeState extends State<Home> {
     Users(),
   ];
 
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
 
+  }
+void readToken()async{
+  String token $
+}
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,15 +54,18 @@ class _HomeState extends State<Home> {
     return ListView(
                 padding: EdgeInsets.zero,
                 children: [
-                  const UserAccountsDrawerHeader(
-                    accountName: Text("Username"),
-                    accountEmail: Text("user@email.com"),
+                   UserAccountsDrawerHeader(
+                    accountName: Text(auth.user.name),
+                    accountEmail: Text(auth.user.email),
                     currentAccountPicture: CircleAvatar(
+
                         backgroundColor: Colors.amber,
-                        child: Text(
-                          'CH',
-                          style: TextStyle(fontSize: 40),
-                        )),
+                        backgroundImage: NetworkImage(auth.user.avatar),
+                        // child: Text(
+                        //   'CH',
+                        //   style: TextStyle(fontSize: 40),
+                        // )
+                        ),
                   ),
                   ListTile(
                     leading: const Icon(Icons.account_circle),

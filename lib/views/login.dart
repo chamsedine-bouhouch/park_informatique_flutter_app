@@ -104,7 +104,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           onPressed: () {
                             Map creds = {
                               'email': _emailController.text,
-                              'passsword': _passwordController.text,
+                              'password': _passwordController.text,
                               'device_name': 'mobile'
                             };
                             if (_formKey.currentState!.validate()) {

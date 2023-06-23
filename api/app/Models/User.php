@@ -33,6 +33,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = ['avatar'];
+
+    function getAvatarAttribute()
+    {
+        return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email)));
+    }
     /**
      * The attributes that should be cast.
      *

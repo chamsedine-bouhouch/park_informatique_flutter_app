@@ -45,5 +45,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->get('/user/revoke', function (Request $request) {
     $user = $request->user();
     $user->tokens()->delete();
-    return 'User are deleted';
+    return response()->json('user revoked token');
 });
