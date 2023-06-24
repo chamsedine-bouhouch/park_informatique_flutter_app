@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
 
   }
 void readToken()async{
-  String token $
+
 }
   @override
   Widget build(BuildContext context) {
