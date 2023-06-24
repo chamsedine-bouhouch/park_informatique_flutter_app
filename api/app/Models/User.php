@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\RoleType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -54,4 +55,14 @@ class User extends Authenticatable
         'password' => 'hashed',
         'role' => RoleType::class
     ];
+
+/**
+ * Get all of the parcs for the Us  er
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+public function parcs(): HasMany 
+{
+    return $this->hasMany(Parc::class);
+}
 }
