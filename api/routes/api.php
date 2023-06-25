@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BaseExperienceController;
+use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\ParcController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
@@ -57,5 +58,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('employes', [UserController::class, 'getEmployees'])->name('getEmployees');
     Route::get('techniciens', [UserController::class, 'getTechniciens'])->name('getTechniciens');
     Route::get('experiences', [BaseExperienceController::class, 'index'])->name('experiences');
+    Route::get('fournisseurs', [FournisseurController::class, 'index'])->name('fournisseurs');
     Route::get('parcs', [ParcController::class, 'index'])->name('parcs');
 });
