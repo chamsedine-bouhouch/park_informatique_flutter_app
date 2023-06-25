@@ -13,7 +13,8 @@ class ParcController extends Controller
      */
     public function index()
     {
-        //
+        $parcs = Parc::all();
+        return response()->json($parcs);
     }
 
     /**

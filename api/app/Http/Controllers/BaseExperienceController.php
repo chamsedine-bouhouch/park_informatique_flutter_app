@@ -13,7 +13,8 @@ class BaseExperienceController extends Controller
      */
     public function index()
     {
-        //
+        $experiences = BaseExperience::all();
+        return response()->json($experiences);
     }
 
     /**

@@ -1,6 +1,9 @@
 <?php
 
-
+use App\Http\Controllers\BaseExperienceController;
+use App\Http\Controllers\ParcController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,4 +49,13 @@ Route::middleware('auth:sanctum')->get('/user/revoke', function (Request $reques
     $user = $request->user();
     $user->tokens()->delete();
     return response()->json('user revoked token');
+});
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('tickets', [TicketController::class, 'index'])->name('tickets.index');
+    Route::get('employes', [UserController::class, 'getEmployees'])->name('getEmployees');
+    Route::get('techniciens', [UserController::class, 'getTechniciens'])->name('getTechniciens');
+    Route::get('experiences', [BaseExperienceController::class, 'index'])->name('experiences');
+    Route::get('parcs', [ParcController::class, 'index'])->name('parcs');
 });
