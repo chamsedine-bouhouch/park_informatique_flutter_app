@@ -22,7 +22,14 @@ class TicketController extends Controller
      */
     public function store(StoreTicketRequest $request)
     {
-        //
+        $ticket = Ticket::create([
+            'titre' => $request->titre,
+            'lieu' =>$request->lieu,
+            'service' => $request->service,
+            'description' => $request->description,
+            'employe_id' => $request->employe_id,
+        ]);
+        return response()->json($ticket, 201);
     }
 
     /**

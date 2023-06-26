@@ -62,4 +62,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('parcs', [ParcController::class, 'index'])->name('parcs');
 
     Route::post('ajout-utilisateur', [UserController::class, 'store'])->name('ajout-utilisateur');
+    Route::post('tickets', [TicketController::class, 'store'])->name('tickets.store');
 });

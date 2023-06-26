@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\EmployeeUserExists;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTicketRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreTicketRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,12 @@ class StoreTicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'titre' => 'required',
+            'lieu' => 'string|max=100',
+            'service' => 'string',
+            'description' => 'string',
+            'employe_id' => ['required','exists:users,id',new EmployeeUserExists()],
+
         ];
     }
 }
