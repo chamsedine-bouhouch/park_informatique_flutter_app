@@ -60,4 +60,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('experiences', [BaseExperienceController::class, 'index'])->name('experiences');
     Route::get('fournisseurs', [FournisseurController::class, 'index'])->name('fournisseurs');
     Route::get('parcs', [ParcController::class, 'index'])->name('parcs');
+
+    Route::post('ajout-utilisateur', [UserController::class, 'store'])->name('ajout-utilisateur');
 });
