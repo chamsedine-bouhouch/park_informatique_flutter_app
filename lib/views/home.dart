@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/services/auth.dart';
+import 'package:flutter_app/providers/auth.dart';
 import 'package:flutter_app/views/settings.dart';
 import 'package:flutter_app/views/tickets/tickets.dart';
 import 'package:flutter_app/views/utilisateurs/users.dart';
@@ -10,15 +10,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
-    static const String _title = 'Accueil';
-
+  static const String _title = 'Accueil';
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
+  final storage = FlutterSecureStorage();
 
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
@@ -28,15 +27,17 @@ class _HomeState extends State<Home> {
     Users(),
   ];
 
-@override
+  @override
   void initState() {
-    // TODO: implement initState
+    readToken();
     super.initState();
-
   }
-void readToken()async{
 
-}
+  void readToken() async {
+    String? token = await storage.read(key: 'token');
+    Provider.of<Auth>(context,listen:false).tryToken(token: token);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,69 +47,63 @@ void readToken()async{
               // backgroundColor: primary,
             ),
             drawer: Drawer(
-              child: 
-               Consumer<Auth>(
-  builder: (context, auth, child) {
-    if (auth.authentificated) {
-      
-    return ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                   UserAccountsDrawerHeader(
-                    accountName: Text(auth.user.name),
-                    accountEmail: Text(auth.user.email),
-                    currentAccountPicture: CircleAvatar(
-
-                        backgroundColor: Colors.amber,
-                        backgroundImage: NetworkImage(auth.user.avatar),
-                        // child: Text(
-                        //   'CH',
-                        //   style: TextStyle(fontSize: 40),
-                        // )
+              child: Consumer<Auth>(
+                builder: (context, auth, child) {
+                  if (auth.authentificated) {
+                    return ListView(
+                      padding: EdgeInsets.zero,
+                      children: [
+                        UserAccountsDrawerHeader(
+                          accountName: Text(auth.user.name),
+                          accountEmail: Text(auth.user.email),
+                          currentAccountPicture: CircleAvatar(
+                            backgroundColor: Colors.amber,
+                            backgroundImage: NetworkImage(auth.user.avatar),
+                            // child: Text(
+                            //   'CH',
+                            //   style: TextStyle(fontSize: 40),
+                            // )
+                          ),
                         ),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.account_circle),
-                    title: const Text('Profile'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-      
-                  ListTile(
-                    leading: const Icon(Icons.add),
-                    title: const Text('Ajout Utilisateur'),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/ajout-utilisateur');
-                    },
-                  ),
-                                    ListTile(
-                    leading: const Icon(Icons.logout),
-                    title: const Text('logout'),
-                    onTap: () {
-                      Provider.of<Auth>(context,listen:false).logout();
-                    },
-                  ),
-                ],
-              );
-    } else {
-    return ListView(
-                padding: EdgeInsets.zero,
-                children: [
-             
-                  ListTile(
-                    leading: const Icon(Icons.login),
-                    title: const Text('Login'),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                  ),
-                 
-                ],
-              );
-      
-    }
-  },),
+                        ListTile(
+                          leading: const Icon(Icons.account_circle),
+                          title: const Text('Profile'),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.add),
+                          title: const Text('Ajout Utilisateur'),
+                          onTap: () {
+                            Navigator.pushNamed(context, '/ajout-utilisateur');
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.logout),
+                          title: const Text('logout'),
+                          onTap: () {
+                            Provider.of<Auth>(context, listen: false).logout();
+                          },
+                        ),
+                      ],
+                    );
+                  } else {
+                    return ListView(
+                      padding: EdgeInsets.zero,
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.login),
+                          title: const Text('Login'),
+                          onTap: () {
+                            Navigator.pushNamed(context, '/login');
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                },
+              ),
               // ListView(
               //   padding: EdgeInsets.zero,
               //   children: [
@@ -129,7 +124,7 @@ void readToken()async{
               //         Navigator.pop(context);
               //       },
               //     ),
-      
+
               //     ListTile(
               //       leading: const Icon(Icons.login),
               //       title: const Text('Login'),
@@ -153,8 +148,7 @@ void readToken()async{
             bottomNavigationBar: NavigationBarTheme(
               data: NavigationBarThemeData(
                 // indicatorColor: Colors.blue.shade300,
-                labelTextStyle: MaterialStateProperty.all(
-                  const TextStyle(
+                labelTextStyle: MaterialStateProperty.all(const TextStyle(
                   fontSize: 14,
                   // fontWeight: FontWeight.w500
                 )),

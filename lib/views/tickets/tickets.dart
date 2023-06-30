@@ -1,6 +1,11 @@
+import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/ticket.dart';
+import 'package:flutter_app/models/ticket.dart';
+import 'package:flutter_app/providers/dio.dart';
+import 'package:flutter_app/providers/tickets.dart';
 import 'package:flutter_app/views/tickets/ticket_details.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:provider/provider.dart';
 
 class Tickets extends StatefulWidget {
   const Tickets({Key? key}) : super(key: key);
@@ -10,15 +15,30 @@ class Tickets extends StatefulWidget {
 }
 
 class _TicketsState extends State<Tickets> {
-  final tickets = List.generate(
-    5,
-    (i) => Ticket(
-      'Ticket $i',
-      'A description of what needs to be done for Todo $i',
-    ),
-  );
+ 
+  @override
+  void initState() {  
+    print('init');
+   getTickets();
+     super.initState();
+  }
+  
+  void getTickets(){
+    Provider.of<TicketsProvider>(context,listen: false).getAllTickets();
+
+  }
+ 
+  // final List<Ticket> tickets = List.generate(
+  //   5,
+  //   (i) => Ticket(
+  //     'Ticket $i',
+  //     'A description of what needs to be done for Todo $i',
+  //   ),
+  // );
   @override
   Widget build(BuildContext context) {
+
+    var tickets= context.watch<TicketsProvider>().tickets;
     return Scaffold(
       // body: ListView(
       //   children: [
@@ -53,7 +73,7 @@ class _TicketsState extends State<Tickets> {
         itemBuilder: (context, index) {
           return ListTile(
             leading: const Icon(Icons.ac_unit),
-            title: Text(tickets[index].title),
+            title: Text(tickets[index].titre),
             subtitle: Text(tickets[index].description),
             trailing: const Icon(Icons.arrow_forward),
             // When a user taps the ListTile, navigate to the DetailScreen.

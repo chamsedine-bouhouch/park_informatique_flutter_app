@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/services/auth.dart';
+import 'package:flutter_app/providers/auth.dart';
+import 'package:flutter_app/providers/tickets.dart';
 import 'package:flutter_app/views/base-connaisances/ajout_experience.dart';
 import 'package:flutter_app/views/base-connaisances/connaissances.dart';
 import 'package:flutter_app/views/fournisseurs/fournisseurs.dart';
@@ -36,6 +37,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => Auth()),
+        ChangeNotifierProvider(create: (context) => TicketsProvider()),
        ],
       child: const MyApp(),
     ),

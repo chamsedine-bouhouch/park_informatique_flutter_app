@@ -18,8 +18,8 @@ class EmployeeUserExists implements ValidationRule
     {
         $user = User::findOrFail($value);
 
-        if ($user->role->value !== RoleType::EMPLOYE) {
-            $fail("L'utilisateur doit etre un employe");
-        }
+        // if ($user->role->value !== RoleType::EMPLOYE) {
+        //     $fail("L'utilisateur doit etre un employe");
+        // }
     }
 }

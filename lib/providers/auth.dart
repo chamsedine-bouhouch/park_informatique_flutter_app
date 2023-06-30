@@ -3,7 +3,7 @@ import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/models/User.dart';
 
-import 'package:flutter_app/services/dio.dart';
+import 'package:flutter_app/providers/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Auth extends ChangeNotifier {
@@ -36,7 +36,7 @@ class Auth extends ChangeNotifier {
     // notifyListeners();
   }
 
-  void tryToken({required String token}) async {
+  void tryToken({ String? token}) async {
     print(token);
     if (token == null) {
       return;
@@ -51,6 +51,7 @@ class Auth extends ChangeNotifier {
         _isLoggedIn = true;
         _user = User.fromJson(response.data);
         this.storeToken(token: token);
+        _token = token;
         notifyListeners();
         print(response.data);
       } catch (e) {
@@ -59,19 +60,34 @@ class Auth extends ChangeNotifier {
     }
   }
 
-  // Save token
-  void storeToken({required String token})async{
+  // Save token,
+  void storeToken({ String? token}) async {
     await storage.write(key: 'token', value: token);
-
   }
+
   // Read token
-  void readToken()async{
+  void readToken() async {
     String? token = await storage.read(key: 'token');
-
   }
 
-  void logout() {
+  void logout() async {
+    try {
+      Dio.Response response = await dio().get('/user/revoke',
+          options: Dio.Options(headers: {
+            "Authorization": "Bearer $_token",
+          }));
+          print(response);
+    } catch (e) {
+      print(e);
+    }
+    // cleanup();
+    // notifyListeners();
+  }
+
+  void cleanup() async {
+    _user = User(name: '', email: '', avatar: '');
     _isLoggedIn = false;
-    notifyListeners();
+    _token = '';
+    await storage.delete(key: 'token');
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/services/auth.dart';
+import 'package:flutter_app/providers/auth.dart';
 import 'package:provider/provider.dart';
 
 class Settings extends StatelessWidget {

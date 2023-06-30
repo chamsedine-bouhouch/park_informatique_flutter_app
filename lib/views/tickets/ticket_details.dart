@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/ticket.dart';
+import 'package:flutter_app/models/ticket.dart';
 
 class TicketDetails extends StatelessWidget {
   // In the constructor, require a Todo.
@@ -13,7 +13,7 @@ class TicketDetails extends StatelessWidget {
     // Use the Todo to create the UI.
     return Scaffold(
       appBar: AppBar(
-        title: Text(ticket.title),
+        title: Text(ticket.titre),
       ),
       body: Padding(
         padding: const EdgeInsets.all(30),
