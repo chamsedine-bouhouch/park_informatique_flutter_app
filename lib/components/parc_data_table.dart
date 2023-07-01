@@ -6,7 +6,7 @@ class ParcDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       double screenWidth = MediaQuery.of(context).size.width;
-    double columnWidth = screenWidth / 10; // Adjust the number (5) as needed
+    double columnWidth = screenWidth / 12; // Adjust the number (5) as needed
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: DataTable(

@@ -6,7 +6,7 @@ class FournisseursDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double columnWidth = screenWidth / 22; // Adjust
+    double columnWidth = screenWidth / 12; // Adjust
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: DataTable(
@@ -58,23 +58,23 @@ class FournisseursDataTable extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(SizedBox(
-                width: columnWidth * 3,
+                width: columnWidth ,
                 child: const Text("data"),
               )),
               DataCell(SizedBox(
-                width: columnWidth * 4,
+                width: columnWidth*2 ,
                 child: const Text("m.f@mail.com"),
               )),
               DataCell(SizedBox(
-                width: columnWidth * 3,
+                width: columnWidth ,
                 child: const Text("90505050"),
               )),
               DataCell(SizedBox(
-                width: columnWidth * 3,
+                width: columnWidth ,
                 child: const Text("Materiel"),
               )),
               DataCell(SizedBox(
-                width: columnWidth * 4,
+                width: columnWidth*2 ,
                 child: const Text("Fournisseur perépheriques"),
               )),
             ],

@@ -6,7 +6,7 @@ class UserDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double columnWidth = screenWidth / 12;
+    double columnWidth = screenWidth / 5;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: DataTable(
@@ -41,15 +41,15 @@ class UserDataTable extends StatelessWidget {
           DataRow(
             cells: <DataCell>[
               DataCell(SizedBox(
-                width: columnWidth * 3,
+                width: columnWidth,
                 child: const Text("Foulen foulani"),
               )),
               DataCell(SizedBox(
-                width: columnWidth * 3,
+                width: columnWidth,
                 child: const Text("90505050"),
               )),
               DataCell(SizedBox(
-                width: columnWidth * 3,
+                width: columnWidth,
                 child: const Text("123546"),
               )),
             ],

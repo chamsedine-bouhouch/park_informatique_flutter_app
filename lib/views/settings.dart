@@ -18,11 +18,11 @@ class Settings extends StatelessWidget {
                 child: Consumer<Auth>(
                   builder: (context, auth, child) {
                     return Text(
-                        'Bienvenue Dans votre espace: ${auth.authentificated}',
+                        'Bienvenue Dans votre espace',
                         style: const TextStyle(
                             fontSize: 24, fontWeight: FontWeight.w500));
                   },
-                )),
+                )), 
             // const Text(
             //   'Bienvenue Dans votre espace',
             //   style: TextStyle(fontSize: 24 ,fontWeight: FontWeight.w500),
