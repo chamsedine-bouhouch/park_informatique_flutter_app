@@ -37,6 +37,7 @@ dependencies:
   dio: ^5.2.1
   provider: ^6.0.5
   flutter_secure_storage: ^8.0.0
+  flutter_native_splash: ^2.2.9
 
 dev_dependencies:
   flutter_test:
@@ -90,3 +91,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+ web: true
+ color: "#e1341e"
+#  background_image: "assets/gct-logo.png"
+#  image: "assets/gct-logo.png"
