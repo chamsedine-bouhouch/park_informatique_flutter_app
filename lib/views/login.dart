@@ -116,6 +116,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                               //       content: Text('Processing Data')),
                               // );
                               Provider.of<Auth>(context,listen:false).login(creds: creds);
+                                // Navigator.pushReplacementNamed(context, '/');
                               // print(creds);
                               // print(_emailController.text);
                               // print(_passwordController.text);

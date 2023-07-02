@@ -5,29 +5,29 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/foundation.dart';
-import 'package:flutter_app/models/ticket.dart';
+import 'package:flutter_app/models/fourniseur.dart';
+import 'package:flutter_app/models/parc.dart';
 import 'package:flutter_app/providers/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final List<Ticket> initialData = List.generate(
-  1,
-  (i) => Ticket('Ticket $i', 'Une description de la ticket test numéro $i', 1),
-);
-
-class TicketsProvider extends ChangeNotifier {
-  List<Ticket> _tickets = initialData;
-  List<Ticket> get tickets => _tickets;
+class ParcsProvider extends ChangeNotifier {
+  List<Parc> _parcs = [];
+  List<Parc> get parcs => _parcs;
 
   final storage = FlutterSecureStorage();
 
-  void getAllTickets() async {
+  // Read value
+
+  void getAllParcs() async {
     var token = await storage.read(key: 'token');
 
-    Dio.Response response = await dio().get('/tickets',
+    Dio.Response response = await dio().get('/parcs',
         options: Dio.Options(headers: {"Authorization": "Bearer $token"}));
 
     List data = response.data;
 
-    _tickets = data.map<Ticket>((ticket) => Ticket.fromJson(ticket)).toList();
+    _parcs = data
+        .map<Parc>((parc) => Parc.fromJson(parc))
+        .toList();
   }
 }

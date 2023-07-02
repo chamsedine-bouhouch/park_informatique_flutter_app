@@ -2,7 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/auth.dart';
+import 'package:flutter_app/providers/experiences.dart';
+import 'package:flutter_app/providers/fournisseur.dart';
+import 'package:flutter_app/providers/parcs.dart';
 import 'package:flutter_app/providers/tickets.dart';
+import 'package:flutter_app/providers/users.dart';
 import 'package:flutter_app/views/base-connaisances/ajout_experience.dart';
 import 'package:flutter_app/views/base-connaisances/connaissances.dart';
 import 'package:flutter_app/views/fournisseurs/fournisseurs.dart';
@@ -38,6 +42,10 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => Auth()),
         ChangeNotifierProvider(create: (context) => TicketsProvider()),
+        ChangeNotifierProvider(create: (context) => FournisseursProvider()),
+        ChangeNotifierProvider(create: (context) => ParcsProvider()),
+        ChangeNotifierProvider(create: (context) => UsersProvider()),
+        ChangeNotifierProvider(create: (context) => ExperiencesProvider()),
        ],
       child: const MyApp(),
     ),

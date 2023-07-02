@@ -18,8 +18,7 @@ class _TicketsState extends State<Tickets> {
  
   @override
   void initState() {  
-    print('init');
-   getTickets();
+    getTickets();
      super.initState();
   }
   
@@ -27,47 +26,12 @@ class _TicketsState extends State<Tickets> {
     Provider.of<TicketsProvider>(context,listen: false).getAllTickets();
 
   }
- 
-  // final List<Ticket> tickets = List.generate(
-  //   5,
-  //   (i) => Ticket(
-  //     'Ticket $i',
-  //     'A description of what needs to be done for Todo $i',
-  //   ),
-  // );
+
   @override
   Widget build(BuildContext context) {
 
     var tickets= context.watch<TicketsProvider>().tickets;
     return Scaffold(
-      // body: ListView(
-      //   children: [
-      //     ListTile(
-      //       leading: Icon(Icons.ac_unit),
-      //       title: Text('Réparation imprimante'),
-      //       subtitle: Text('Service info'),
-      //       trailing: Icon(Icons.arrow_forward),
-      //       onTap: () {
-      //         // Handle the onTap event for this list item
-      //         Navigator.pushNamed(context, '/ajout-ticket');
-      //       },
-      //     ),
-      //     ListTile(
-      //       leading: Icon(Icons.ac_unit),
-      //       title: Text('Formatage PC'),
-      //       subtitle: Text('software'),
-      //       trailing: Icon(Icons.arrow_forward),
-      //       onTap: () {
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => TicketDetails(todo: todos[index]),
-      //     ),
-      //   );
-      // },
-      //     ),
-      //   ],
-      // ),
       body: ListView.builder(
         itemCount: tickets.length,
         itemBuilder: (context, index) {

@@ -1,12 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/providers/experiences.dart';
+import 'package:provider/provider.dart';
 
-class ExperiencesDataTabele extends StatelessWidget {
+class ExperiencesDataTabele extends StatefulWidget {
   const ExperiencesDataTabele({Key? key}) : super(key: key);
 
   @override
+  State<ExperiencesDataTabele> createState() => _ExperiencesDataTabeleState();
+}
+
+class _ExperiencesDataTabeleState extends State<ExperiencesDataTabele> {
+  @override
+  void initState() {
+    print('init experiences');
+    getAllParcs();
+    super.initState();
+  }
+
+  void getAllParcs() {
+    Provider.of<ExperiencesProvider>(context, listen: false)
+        .getAllExperiences();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var experiences = context.watch<ExperiencesProvider>().experiences;
+    print(experiences);
     double screenWidth = MediaQuery.of(context).size.width;
-    double columnWidth = screenWidth /3;
+    double columnWidth = screenWidth / 3;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: DataTable(
@@ -29,20 +50,22 @@ class ExperiencesDataTabele extends StatelessWidget {
             ),
           ),
         ],
-        rows: <DataRow>[
-          DataRow(
-            cells: <DataCell>[
-              DataCell(SizedBox(
-                width: columnWidth ,
-                child: const Text("Formatage PC"),
-              )),
-              DataCell(SizedBox(
-                width: columnWidth ,
-                child: const Text("Utiliser un flash bootable"),
-              )),
-            ],
-          ),
-        ],
+        rows: experiences
+            .map(
+              (experience) => DataRow(
+                cells: <DataCell>[
+                  DataCell(SizedBox(
+                    width: columnWidth,
+                    child:  Text(experience.titre.toString()),
+                  )),
+                  DataCell(SizedBox(
+                    width: columnWidth,
+                    child:  Text(experience.description.toString()),
+                  )),
+                ],
+              ),
+            )
+            .toList(),
       ),
     );
   }

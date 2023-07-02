@@ -1,6 +1,6 @@
 // ignore: library_prefixes
 import 'package:dio/dio.dart' as Dio;
-import 'package:flutter/foundation.dart';
+ import 'package:flutter/foundation.dart';
 import 'package:flutter_app/models/User.dart';
 
 import 'package:flutter_app/providers/dio.dart';
@@ -30,13 +30,10 @@ class Auth extends ChangeNotifier {
         print(e);
       }
     }
-    // print(creds);
-
-    // _isLoggedIn = true;
-    // notifyListeners();
+ 
   }
 
-  void tryToken({ String? token}) async {
+  void tryToken({String? token}) async {
     print(token);
     if (token == null) {
       return;
@@ -61,7 +58,7 @@ class Auth extends ChangeNotifier {
   }
 
   // Save token,
-  void storeToken({ String? token}) async {
+  void storeToken({String? token}) async {
     await storage.write(key: 'token', value: token);
   }
 
@@ -76,7 +73,7 @@ class Auth extends ChangeNotifier {
           options: Dio.Options(headers: {
             "Authorization": "Bearer $_token",
           }));
-          print(response);
+      print(response);
     } catch (e) {
       print(e);
     }
