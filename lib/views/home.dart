@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/auth.dart';
+import 'package:flutter_app/views/base-connaisances/connaissances.dart';
 import 'package:flutter_app/views/settings.dart';
 import 'package:flutter_app/views/tickets/tickets.dart';
 import 'package:flutter_app/views/utilisateurs/users.dart';
@@ -22,9 +23,9 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     Settings(),
+    // Settings(),
     Tickets(),
-    Users(),
-    Users(),
+    // Connaissances()
   ];
 
   @override
@@ -72,13 +73,13 @@ class _HomeState extends State<Home> {
                             Navigator.pop(context);
                           },
                         ),
-                        ListTile(
-                          leading: const Icon(Icons.add),
-                          title: const Text('Ajout Utilisateur'),
-                          onTap: () {
-                            Navigator.pushNamed(context, '/ajout-utilisateur');
-                          },
-                        ),
+                        // ListTile(
+                        //   leading: const Icon(Icons.add),
+                        //   title: const Text('Ajout Utilisateur'),
+                        //   onTap: () {
+                        //     Navigator.pushNamed(context, '/ajout-utilisateur');
+                        //   },
+                        // ),
                         ListTile(
                           leading: const Icon(Icons.logout),
                           title: const Text('logout'),
@@ -166,8 +167,8 @@ class _HomeState extends State<Home> {
                   //     icon: Icon(Icons.settings), label: "Settings"),
                   NavigationDestination(
                       icon: Icon(Icons.support), label: "Tickets"),
-                  NavigationDestination(
-                      icon: Icon(Icons.people_rounded), label: "Users"),
+                  // NavigationDestination(
+                      // icon: Icon(Icons.account_circle), label: "Profile"),
                 ],
               ),
             )));
