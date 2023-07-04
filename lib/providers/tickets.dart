@@ -30,4 +30,17 @@ class TicketsProvider extends ChangeNotifier {
 
     _tickets = data.map<Ticket>((ticket) => Ticket.fromJson(ticket)).toList();
   }
+
+   addTicket({required Map addTicketForm}) async {
+       var token = await storage.read(key: 'token');
+      print('ticket provider');
+      Dio.Response response = await dio().post('/tickets',
+          data: addTicketForm,
+          options: Dio.Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          }));
+      return response.data.toString();
+   
+  }
 }

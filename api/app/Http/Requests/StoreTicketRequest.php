@@ -24,7 +24,7 @@ class StoreTicketRequest extends FormRequest
     {
         return [
             'titre' => 'required',
-            'lieu' => 'string|max=100',
+            'lieu' => 'string',
             'service' => 'string',
             'description' => 'string',
             'employe_id' => ['required','exists:users,id',new EmployeeUserExists()],

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('employe_id')->constrained(table:'users');
             $table->foreignId('chef_id')->nullable()->constrained(table:'users');
             $table->foreignId('admin_id')->nullable()->constrained(table:'users');
+            $table->foreignId('technicien_id')->nullable()->constrained(table:'users');
             $table->timestamps();
         });
     }

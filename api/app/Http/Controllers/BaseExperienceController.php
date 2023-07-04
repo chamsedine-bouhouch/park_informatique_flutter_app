@@ -22,7 +22,11 @@ class BaseExperienceController extends Controller
      */
     public function store(StoreBaseExperienceRequest $request)
     {
-        //
+        $experience = BaseExperience::create([
+            'titre' => $request->titre,
+            'description' => $request->description,
+        ]);
+        return response()->json($experience, 201);
     }
 
     /**

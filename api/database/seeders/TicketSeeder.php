@@ -20,7 +20,8 @@ class TicketSeeder extends Seeder
             'role' => RoleType::EMPLOYE
         ]);
        Ticket::create([
-        'titre'=>"one",
+        'titre'=>"Premier Titre ",
+        'description'=>"Description 1",
         'employe_id'=>$employe->id
        ]);
     }

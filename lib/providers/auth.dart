@@ -1,6 +1,6 @@
 // ignore: library_prefixes
 import 'package:dio/dio.dart' as Dio;
- import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_app/models/User.dart';
 
 import 'package:flutter_app/providers/dio.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Auth extends ChangeNotifier {
   bool _isLoggedIn = false;
-  late User _user;
+   late User _user;
   late String _token;
   bool get authentificated => _isLoggedIn;
   User get user => _user;
@@ -30,7 +30,6 @@ class Auth extends ChangeNotifier {
         print(e);
       }
     }
- 
   }
 
   void tryToken({String? token}) async {
@@ -50,7 +49,7 @@ class Auth extends ChangeNotifier {
         this.storeToken(token: token);
         _token = token;
         notifyListeners();
-        print(response.data);
+        print(_user.id);
       } catch (e) {
         print(e);
       }
@@ -82,7 +81,7 @@ class Auth extends ChangeNotifier {
   }
 
   void cleanup() async {
-    _user = User(name: '', email: '', avatar: '');
+    _user = User(id: 0, name: '', email: '', avatar: '');
     _isLoggedIn = false;
     _token = '';
     await storage.delete(key: 'token');

@@ -18,5 +18,6 @@ class Ticket extends Model
         'employe_id',
         'chef_id',
         'admin_id',
+        'technicien_id',
     ];
 }

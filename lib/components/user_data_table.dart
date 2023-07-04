@@ -70,7 +70,7 @@ class _UserDataTableState extends State<UserDataTable> {
                     )),
                     DataCell(SizedBox(
                       width: columnWidth,
-                      child: const Text("123546"),
+                      child: Text(employee.genre.toString()),
                     )),
                   ],
                 ),

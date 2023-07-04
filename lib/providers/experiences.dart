@@ -29,4 +29,15 @@ class ExperiencesProvider extends ChangeNotifier {
         .map<Experience>((experience) => Experience.fromJson(experience))
         .toList();
   }
+     addExperience({required Map fomData}) async {
+       var token = await storage.read(key: 'token');
+       Dio.Response response = await dio().post('/experiences',
+          data: fomData,
+          options: Dio.Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          }));
+      return response.data.toString();
+   
+  }
 }

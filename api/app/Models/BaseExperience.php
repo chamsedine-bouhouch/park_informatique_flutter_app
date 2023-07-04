@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class BaseExperience extends Model
 {
     use HasFactory;
+    protected $fillable = ['titre', 'description','technicien_id'];
 }

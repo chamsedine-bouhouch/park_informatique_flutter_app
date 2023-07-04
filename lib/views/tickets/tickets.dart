@@ -1,11 +1,7 @@
-import 'package:dio/dio.dart' as Dio;
-import 'package:flutter/material.dart';
-import 'package:flutter_app/models/ticket.dart';
-import 'package:flutter_app/providers/dio.dart';
-import 'package:flutter_app/providers/tickets.dart';
+ import 'package:flutter/material.dart';
+ import 'package:flutter_app/providers/tickets.dart';
 import 'package:flutter_app/views/tickets/ticket_details.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:provider/provider.dart';
+ import 'package:provider/provider.dart';
 
 class Tickets extends StatefulWidget {
   const Tickets({Key? key}) : super(key: key);

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/providers/experiences.dart';
+import 'package:provider/provider.dart';
 
 class AjoutExperience extends StatefulWidget {
   const AjoutExperience({Key? key}) : super(key: key);
@@ -8,8 +10,7 @@ class AjoutExperience extends StatefulWidget {
 }
 
 class _AjoutExperienceState extends State<AjoutExperience> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController titleController = TextEditingController();
+  TextEditingController titreController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
   Widget build(BuildContext context) {
@@ -31,10 +32,10 @@ class _AjoutExperienceState extends State<AjoutExperience> {
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: TextField(
-                      controller: titleController,
+                      controller: titreController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Title',
+                        labelText: 'Titre',
                       ),
                     ),
                   ),
@@ -55,7 +56,18 @@ class _AjoutExperienceState extends State<AjoutExperience> {
                       child: ElevatedButton(
                         child: const Text('Ajouter'),
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/');
+                          Map formData = {
+                            "titre": titreController.text,
+                            "description": descriptionController.text
+                          };
+                          print(formData);
+                          Provider.of<ExperiencesProvider>(context,
+                                  listen: false)
+                              .addExperience(fomData: formData)
+                              .then((res) => {
+                                    Navigator.pushReplacementNamed(
+                                        context, '/experiences')
+                                  });
                         },
                       )),
                 ],

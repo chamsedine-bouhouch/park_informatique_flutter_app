@@ -19,10 +19,18 @@ class FournisseurController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * ['nom','email','type','telephone','service'
      */
     public function store(StoreFournisseurRequest $request)
     {
-        //
+        $fournisseur = Fournisseur::create([
+            'nom' => $request->nom,
+            'email' => $request->email,
+            'type' => $request->type,
+            'telephone' => $request->telephone,
+            'service' => $request->service,
+        ]);
+        return response()->json($fournisseur, 201);
     }
 
     /**

@@ -54,13 +54,14 @@ Route::middleware('auth:sanctum')->get('/user/revoke', function (Request $reques
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('tickets', [TicketController::class, 'index'])->name('tickets.index');
     Route::get('employes', [UserController::class, 'getEmployees'])->name('getEmployees');
     Route::get('techniciens', [UserController::class, 'getTechniciens'])->name('getTechniciens');
-    Route::get('experiences', [BaseExperienceController::class, 'index'])->name('experiences');
-    Route::get('fournisseurs', [FournisseurController::class, 'index'])->name('fournisseurs');
-    Route::get('parcs', [ParcController::class, 'index'])->name('parcs');
-
     Route::post('ajout-utilisateur', [UserController::class, 'store'])->name('ajout-utilisateur');
-    Route::post('tickets', [TicketController::class, 'store'])->name('tickets.store');
+
+    Route::apiResource('tickets', TicketController::class);
+    Route::apiResource('experiences', BaseExperienceController::class);
+    Route::apiResource('fournisseurs', FournisseurController::class);
+    Route::apiResource('parcs', ParcController::class);
+
+    // Route::post('tickets', [TicketController::class, 'store'])->name('tickets.store');
 });
