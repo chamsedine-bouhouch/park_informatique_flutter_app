@@ -50,15 +50,15 @@ class Settings extends StatelessWidget {
                 Container(
                     height: 50,
                     margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: (auth.user.role != "Employe")
-                        ? ElevatedButton(
+                    child: 
+                         ElevatedButton(
                             child: Text(
                                 style: TextStyle(fontSize: 18),
-                                'Base de connaissances'),
+                                "base d'experiences"),
                             onPressed: () => Navigator.pushNamed(
                                 context, '/base-connaissances'),
                           )
-                        : null),
+                        ),
                 Container(
                     height: 50,
                     margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
