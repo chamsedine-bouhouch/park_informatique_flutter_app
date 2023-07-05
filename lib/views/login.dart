@@ -115,8 +115,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                               //   const SnackBar(
                               //       content: Text('Processing Data')),
                               // );
-                              Provider.of<Auth>(context,listen:false).login(creds: creds);
-                                // Navigator.pushReplacementNamed(context, '/');
+                              Provider.of<Auth>(context, listen: false)
+                                  .login(creds: creds);
+                              if (Provider.of<Auth>(context, listen: false)
+                                  .authentificated) {
+                                Navigator.pushReplacementNamed(
+                                    context, '/home');
+                              }
                               // print(creds);
                               // print(_emailController.text);
                               // print(_passwordController.text);

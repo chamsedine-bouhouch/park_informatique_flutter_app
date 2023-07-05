@@ -26,12 +26,15 @@ class UsersProvider extends ChangeNotifier {
         options: Dio.Options(headers: {"Authorization": "Bearer $token"}));
 
     List data = response.data;
-    print('provider');
+    print('provider users');
     // print(data);
     // print(response.data);
     // List _users = json.decode(response.toString());
     // final parsed = jsonDecode(response.toString()).cast<Map<String, dynamic>>();
 
     _employees = data.map<User>((user) => User.fromJson(user)).toList();
+
+    print(_employees);
+    notifyListeners();
   }
 }

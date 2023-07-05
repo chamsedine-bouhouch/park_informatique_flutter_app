@@ -66,25 +66,24 @@ class _HomeState extends State<Home> {
                             // )
                           ),
                         ),
-                        ListTile(
-                          leading: const Icon(Icons.account_circle),
-                          title: const Text('Profile'),
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                        ),
                         // ListTile(
-                        //   leading: const Icon(Icons.add),
-                        //   title: const Text('Ajout Utilisateur'),
+                        //   leading: const Icon(Icons.account_circle),
+                        //   title: const Text('Profile'),
                         //   onTap: () {
-                        //     Navigator.pushNamed(context, '/ajout-utilisateur');
+                        //     Navigator.pop(context);
                         //   },
                         // ),
+      
                         ListTile(
                           leading: const Icon(Icons.logout),
                           title: const Text('logout'),
                           onTap: () {
                             Provider.of<Auth>(context, listen: false).logout();
+                              if (Provider.of<Auth>(context, listen: false)
+                                  .authentificated) {
+                                Navigator.pushReplacementNamed(
+                                    context, '/');
+                              }
                           },
                         ),
                       ],
@@ -105,48 +104,13 @@ class _HomeState extends State<Home> {
                   }
                 },
               ),
-              // ListView(
-              //   padding: EdgeInsets.zero,
-              //   children: [
-              //     const UserAccountsDrawerHeader(
-              //       accountName: Text("Username"),
-              //       accountEmail: Text("user@email.com"),
-              //       currentAccountPicture: CircleAvatar(
-              //           backgroundColor: Colors.amber,
-              //           child: Text(
-              //             'CH',
-              //             style: TextStyle(fontSize: 40),
-              //           )),
-              //     ),
-              //     ListTile(
-              //       leading: const Icon(Icons.account_circle),
-              //       title: const Text('Profile'),
-              //       onTap: () {
-              //         Navigator.pop(context);
-              //       },
-              //     ),
-
-              //     ListTile(
-              //       leading: const Icon(Icons.login),
-              //       title: const Text('Login'),
-              //       onTap: () {
-              //         Navigator.pushNamed(context, '/login');
-              //       },
-              //     ),
-              //     ListTile(
-              //       leading: const Icon(Icons.add),
-              //       title: const Text('Ajout Utilisateur'),
-              //       onTap: () {
-              //         Navigator.pushNamed(context, '/ajout-utilisateur');
-              //       },
-              //     ),
-              //   ],
-              // ),
+  
             ),
             body: Center(
               child: _widgetOptions.elementAt(_selectedIndex),
             ),
-            bottomNavigationBar: NavigationBarTheme(
+            bottomNavigationBar: 
+            NavigationBarTheme(
               data: NavigationBarThemeData(
                 // indicatorColor: Colors.blue.shade300,
                 labelTextStyle: MaterialStateProperty.all(const TextStyle(
@@ -171,6 +135,7 @@ class _HomeState extends State<Home> {
                       // icon: Icon(Icons.account_circle), label: "Profile"),
                 ],
               ),
-            )));
+            )
+            ));
   }
 }

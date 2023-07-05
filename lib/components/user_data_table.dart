@@ -22,13 +22,15 @@ class _UserDataTableState extends State<UserDataTable> {
 
   @override
   Widget build(BuildContext context) {
-    var employees = context.watch<UsersProvider>().employees;
-    print(employees);
+    // var employees = context.watch<UsersProvider>().employees;
+    // print(employees);
     double screenWidth = MediaQuery.of(context).size.width;
     double columnWidth = screenWidth / 5;
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: DataTable(
+      child: Consumer<UsersProvider>(builder: ((context, provider, child) {
+        return 
+         DataTable(
           columnSpacing: columnWidth * 0.5,
           columns: const <DataColumn>[
             DataColumn(
@@ -56,7 +58,7 @@ class _UserDataTableState extends State<UserDataTable> {
               ),
             ),
           ],
-          rows: employees
+          rows: provider.employees
               .map(
                 (employee) => DataRow(
                   cells: <DataCell>[
@@ -75,7 +77,9 @@ class _UserDataTableState extends State<UserDataTable> {
                   ],
                 ),
               )
-              .toList()),
+              .toList());
+      }))
+      
     );
   }
 }

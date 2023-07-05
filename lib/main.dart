@@ -60,10 +60,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Park Informatique',
+      home: Login(),
       theme: ThemeData(
           colorSchemeSeed: const Color(0xff6750a4), useMaterial3: true),
+
       routes: {
-        '/': (context) => Home(),
+        '/home': (context) => Home(),
         '/login': (context) => Login(),
         '/users': (context) => Users(),
         '/tickets': (context) => Tickets(),
@@ -77,6 +79,7 @@ class MyApp extends StatelessWidget {
         '/parcs': (context) => Parcs(),
         '/base-connaissances': (context) => Connaissances(),
         // '/ticket-details': (context) => TicketDetails(),
+      
       },
       // onGenerateRoute: route.controller,
       // initialRoute: route.loginPage,

@@ -28,6 +28,7 @@ class ExperiencesProvider extends ChangeNotifier {
     _experiences = data
         .map<Experience>((experience) => Experience.fromJson(experience))
         .toList();
+        notifyListeners();
   }
      addExperience({required Map fomData}) async {
        var token = await storage.read(key: 'token');

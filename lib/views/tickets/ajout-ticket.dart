@@ -56,46 +56,50 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             padding: const EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    child: DropdownButtonFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Employé',
-                      ),
-                      items: employeList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        // This is called when the user selects an item.
-                        setState(() {
-                          employeDropdownValue = value?.toString();
-                        });
-                      },
-                    )),
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    child: DropdownButtonFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Attribué à',
-                      ),
-                      items: technicienList
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String? value) {
-                        // This is called when the user selects an item.
-                        setState(() {
-                          technicienDropdownValue = value!;
-                        });
-                      },
-                    )),
+                // Container(
+                //     padding: const EdgeInsets.all(10),
+                //     child: DropdownButtonFormField(
+                //       decoration: const InputDecoration(
+                //         labelText: 'Employé',
+                //       ),
+                //       items: employeList
+                //           .map<DropdownMenuItem<String>>((String value) {
+                //         return DropdownMenuItem<String>(
+                //           value: value,
+                //           child: Text(value),
+                //         );
+                //       }).toList(),
+                //       onChanged: (value) {
+                //         // This is called when the user selects an item.
+                //         setState(() {
+                //           employeDropdownValue = value?.toString();
+                //         });
+                //       },
+                //     )),
+                // Container(
+                //     padding: const EdgeInsets.all(10),
+                //     child: Consumer<UsersProvider>(
+                //       builder: (context, value, child) {
+                //         return DropdownButtonFormField(
+                //           decoration: const InputDecoration(
+                //             labelText: 'Attribué à',
+                //           ),
+                //           items: value.employees
+                //               .map((item) {
+                //             return DropdownMenuItem(
+                //               value: item.id.toString(),
+                //               child: Text(item.name.toString()),
+                //             );
+                //           }).toList(),
+                //           onChanged: ( item) {
+                //             // This is called when the user selects an item.
+                //             setState(() {
+                //               // technicienDropdownValue = value!;
+                //             });
+                //           },
+                //         );
+                //       },
+                //     )),
                 Container(
                     padding: const EdgeInsets.all(10),
                     child: DropdownButton<String>(
@@ -171,7 +175,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       child: const Text('Ajouter'),
                       onPressed: () {
                         Map addTicketForm = {
-                          'employe_id': 1,
+                          // 'employe_id': 1,
                           'technicien': technicienDropdownValue,
                           'titre': titreController.text,
                           'lieu': lieuController.text,
@@ -182,10 +186,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         print(addTicketForm);
                         Provider.of<TicketsProvider>(context, listen: false)
                             .addTicket(addTicketForm: addTicketForm)
-                            .then((res) => {
-                                  Navigator.pushReplacementNamed(
-                                      context, '/tickets')
-                                });
+                            .then((res) =>
+                                {Navigator.pushNamed(context, '/home')});
                       },
                     )),
               ],

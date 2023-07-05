@@ -63,5 +63,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('fournisseurs', FournisseurController::class);
     Route::apiResource('parcs', ParcController::class);
 
-    // Route::post('tickets', [TicketController::class, 'store'])->name('tickets.store');
+    Route::put('tickets/{ticket}/approuver', [TicketController::class, 'approuver'])->name('tickets.approuver');
+    Route::put('tickets/{ticket}/refuser', [TicketController::class, 'refuser'])->name('tickets.refuser');
+    Route::put('tickets/{ticket}/traiter', [TicketController::class, 'traiter'])->name('tickets.traiter');
+    Route::put('tickets/{ticket}/nonTraiter', [TicketController::class, 'nonTraiter'])->name('tickets.nonTraiter');
 });

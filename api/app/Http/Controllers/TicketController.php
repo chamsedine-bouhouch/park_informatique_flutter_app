@@ -48,9 +48,12 @@ class TicketController extends Controller
             'lieu' => $request->lieu,
             'service' => $request->service,
             'description' => $request->description,
-            'employe_id' => $request->employe_id,
-            'technicien_id' => $request->technicien_id,
-            'chef_id' => $request->chef_id,
+            // 'statut' => $request->statut,
+            'employe_id' => auth()->id(),
+            // 'technicien_id' => $request->technicien_id,
+            'technicien_id' => 5,
+            // 'chef_id' => $request->chef_id,
+            'chef_id' => 4,
         ]);
         return response()->json($ticket, 201);
     }
@@ -87,10 +90,34 @@ class TicketController extends Controller
         $ticket->statut = "Affecté";
         $ticket->save();
     }
+    // public function refuser(UpdateTicketRequest $request, Ticket $ticket)
+    // {
+    //     $ticket->statut = "Refusé";
+    //     $ticket->save();
+    // }
+    public function approuver(UpdateTicketRequest $request, Ticket $ticket)
+    {
+        $ticket->statut = "Approuvé";
+        $ticket->save();
+        return $ticket;
+    }
     public function refuser(UpdateTicketRequest $request, Ticket $ticket)
     {
         $ticket->statut = "Refusé";
         $ticket->save();
+        return $ticket;
+    }
+    public function traiter(UpdateTicketRequest $request, Ticket $ticket)
+    {
+        $ticket->statut = "Traité";
+        $ticket->save();
+        return $ticket;
+    }
+    public function nonTraiter(UpdateTicketRequest $request, Ticket $ticket)
+    {
+        $ticket->statut = "Non Traité";
+        $ticket->save();
+        return $ticket;
     }
 
     /**

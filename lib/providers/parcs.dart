@@ -5,8 +5,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/foundation.dart';
-import 'package:flutter_app/models/fourniseur.dart';
-import 'package:flutter_app/models/parc.dart';
+ import 'package:flutter_app/models/parc.dart';
 import 'package:flutter_app/providers/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -29,5 +28,6 @@ class ParcsProvider extends ChangeNotifier {
     _parcs = data
         .map<Parc>((parc) => Parc.fromJson(parc))
         .toList();
+        notifyListeners();
   }
 }

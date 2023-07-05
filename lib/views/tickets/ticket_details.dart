@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/ticket.dart';
 import 'package:flutter_app/providers/auth.dart';
+import 'package:flutter_app/providers/tickets.dart';
 import 'package:provider/provider.dart';
 
 class TicketDetails extends StatelessWidget {
@@ -19,11 +20,21 @@ class TicketDetails extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.all(30),
-          child: Consumer<Auth>(builder: (context, auth, child) {
+          child: Consumer2<Auth, TicketsProvider>(
+              builder: (context, auth, ticket_provider, child) {
             return ListView(children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(20),
                 child: Text(ticket.description),
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: Chip(
+                  padding: EdgeInsets.all(0),
+                  backgroundColor: Color(0xff6750a4),
+                  label: Text(ticket.statut,
+                      style: TextStyle(color: Colors.white)),
+                ),
               ),
               Container(
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -38,7 +49,9 @@ class TicketDetails extends StatelessWidget {
                               backgroundColor: Color.fromRGBO(76, 175, 80, 1)),
                           child: const Text('Accepter & traiter'),
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/');
+                             Provider.of<TicketsProvider>(context, listen: false)
+                                .traiter(ticketId: ticket.id);
+                            Navigator.pushReplacementNamed(context, '/home');
                           },
                         )
                       : null),
@@ -55,7 +68,9 @@ class TicketDetails extends StatelessWidget {
                               backgroundColor: Colors.red),
                           child: const Text('Refuser & ne pas traiter'),
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/');
+                            Provider.of<TicketsProvider>(context, listen: false)
+                                .nonTraiter(ticketId: ticket.id);
+                            Navigator.pushReplacementNamed(context, '/home');
                           },
                         )
                       : null),
@@ -70,7 +85,9 @@ class TicketDetails extends StatelessWidget {
                               backgroundColor: Colors.green),
                           child: const Text('Approuver'),
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/');
+                            Provider.of<TicketsProvider>(context, listen: false)
+                                .approuver(ticketId: ticket.id);
+                            Navigator.pushReplacementNamed(context, '/home');
                           },
                         )
                       : null),
@@ -85,7 +102,9 @@ class TicketDetails extends StatelessWidget {
                               backgroundColor: Colors.red),
                           child: const Text('Refuser'),
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/');
+                            Provider.of<TicketsProvider>(context, listen: false)
+                                .refuser(ticketId: ticket.id);
+                            Navigator.pushReplacementNamed(context, '/home');
                           },
                         )
                       : null),

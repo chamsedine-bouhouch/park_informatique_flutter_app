@@ -28,5 +28,6 @@ class FournisseursProvider extends ChangeNotifier {
     _fournisseurs = data
         .map<Fournisseur>((fournisseur) => Fournisseur.fromJson(fournisseur))
         .toList();
+        notifyListeners();
   }
 }

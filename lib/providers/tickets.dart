@@ -9,10 +9,12 @@ import 'package:flutter_app/models/ticket.dart';
 import 'package:flutter_app/providers/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final List<Ticket> initialData = List.generate(
-  1,
-  (i) => Ticket('Ticket $i', 'Une description de la ticket test numéro $i', 1),
-);
+final List<Ticket> initialData = [];
+// List.generate(
+//   // 1,
+//   // (i) => Ticket('Ticket $i', 'Une description de la ticket test numéro $i', 1,"En Attente"),
+
+// );
 
 class TicketsProvider extends ChangeNotifier {
   List<Ticket> _tickets = initialData;
@@ -29,6 +31,8 @@ class TicketsProvider extends ChangeNotifier {
     List data = response.data;
 
     _tickets = data.map<Ticket>((ticket) => Ticket.fromJson(ticket)).toList();
+    notifyListeners();
+    
   }
 
    addTicket({required Map addTicketForm}) async {
@@ -43,4 +47,50 @@ class TicketsProvider extends ChangeNotifier {
       return response.data.toString();
    
   }
+  void approuver({required ticketId}) async {
+       var token = await storage.read(key: 'token');
+      print('ticket Approuvé');
+      Dio.Response response = await dio().put('/tickets/$ticketId/approuver',
+          options: Dio.Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          }));
+    
+   notifyListeners();
+  }
+  void refuser({required ticketId}) async {
+       var token = await storage.read(key: 'token');
+      print('ticket refusé');
+      Dio.Response response = await dio().put('/tickets/$ticketId/refuser',
+          options: Dio.Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          }));
+    
+   notifyListeners();
+  }
+  void traiter({required ticketId}) async {
+       var token = await storage.read(key: 'token');
+      print('ticket refusé');
+      Dio.Response response = await dio().put('/tickets/$ticketId/traiter',
+          options: Dio.Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          }));
+    
+   notifyListeners();
+  }
+  void nonTraiter({required ticketId}) async {
+       var token = await storage.read(key: 'token');
+      print('ticket refusé');
+      Dio.Response response = await dio().put('/tickets/$ticketId/nonTraiter',
+          options: Dio.Options(headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          }));
+    
+   notifyListeners();
+  }
+
+  
 }

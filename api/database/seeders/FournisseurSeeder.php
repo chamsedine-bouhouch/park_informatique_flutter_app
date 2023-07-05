@@ -16,6 +16,9 @@ class FournisseurSeeder extends Seeder
        Fournisseur::create([
         'nom'=>"fournisseur1",
         'email'=>"fournisseur1@f.com",
+        'type'=>"Materiel",
+        'telephone'=>23801405,
+        'service'=>"info",
        ]);
     }
 }
