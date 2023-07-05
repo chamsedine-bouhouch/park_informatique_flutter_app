@@ -29,31 +29,66 @@ class TicketDetails extends StatelessWidget {
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   height: 50,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child:(auth.user.role == "Technicien de développement" ||
-                            auth.user.role == "Technicien de réseaux" ||
-                            auth.user.role == "Technicien de maintenance")
-                        ? ElevatedButton(
-                    style: TextButton.styleFrom(
-                        primary: Colors.white, backgroundColor: Colors.green),
-                    child: const Text('Accepter'),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/');
-                    },
-                  ):null),
+                  child: (auth.user.role == "Technicien de développement" ||
+                          auth.user.role == "Technicien de réseaux" ||
+                          auth.user.role == "Technicien de maintenance")
+                      ? ElevatedButton(
+                          style: TextButton.styleFrom(
+                              primary: Colors.white,
+                              backgroundColor: Color.fromRGBO(76, 175, 80, 1)),
+                          child: const Text('Accepter & traiter'),
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, '/');
+                          },
+                        )
+                      : null),
               Container(
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   height: 50,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child:(auth.user.role == "Technicien de développement" ||
-                            auth.user.role == "Technicien de réseaux" ||
-                            auth.user.role == "Technicien de maintenance")? ElevatedButton(
-                    style: TextButton.styleFrom(
-                        primary: Colors.black, backgroundColor: Colors.red),
-                    child: const Text('Refuser'),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/');
-                    },
-                  ):null),
+                  child: (auth.user.role == "Technicien de développement" ||
+                          auth.user.role == "Technicien de réseaux" ||
+                          auth.user.role == "Technicien de maintenance")
+                      ? ElevatedButton(
+                          style: TextButton.styleFrom(
+                              primary: Colors.black,
+                              backgroundColor: Colors.red),
+                          child: const Text('Refuser & ne pas traiter'),
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, '/');
+                          },
+                        )
+                      : null),
+              Container(
+                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: (auth.user.role == "Chef herarchique")
+                      ? ElevatedButton(
+                          style: TextButton.styleFrom(
+                              primary: Colors.white,
+                              backgroundColor: Colors.green),
+                          child: const Text('Approuver'),
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, '/');
+                          },
+                        )
+                      : null),
+              Container(
+                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: (auth.user.role == "Chef herarchique")
+                      ? ElevatedButton(
+                          style: TextButton.styleFrom(
+                              primary: Colors.black,
+                              backgroundColor: Colors.red),
+                          child: const Text('Refuser'),
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, '/');
+                          },
+                        )
+                      : null),
             ]);
           })),
       floatingActionButton: FloatingActionButton(

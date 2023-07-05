@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('service')->nullable();
             $table->enum('urgence', ['Haute', 'Moyenne', 'Base'])->default('Base');
             $table->text('description')->nullable();
-            $table->enum('statut', ['En Attente', 'Affecté', 'Traité'])->default('En Attente');
+            $table->enum('statut', ['En Attente', 'Approuvé','Refusé', 'Affecté','Non Traité', 'Traité'])->default('En Attente');
             $table->string('message_chef')->nullable();
             $table->foreignId('employe_id')->constrained(table:'users');
             $table->foreignId('chef_id')->nullable()->constrained(table:'users');
